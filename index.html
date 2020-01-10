@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,52 @@
     <title>Qemcs's Home Page</title>
     <style>
         html {
-            background: #f4f4f4;
             height: 100%;
         }
         body {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
             min-height: 100%;
             padding: 0 2em;
         }
+        html.light {
+            background: #f4f4f4;
+        }
+        html.light body {
+            background: white;
+        }
+        html.dark {
+            background: #242525;
+            color: #bab6af;
+        }
+        html.dark body {
+            background: #2B2C2C;
+        }
+        html.dark a {
+            color: #3b76bb;
+        }
     </style>
+    <script>
+        let $ = function() {
+            return document.querySelectorAll(...arguments)
+        }
+        window.onload = () => {
+            $('.light-btn')[0].addEventListener('click', () => {
+                $('html')[0].className = 'light'
+            })
+            $('.dark-btn')[0].addEventListener('click', () => {
+                $('html')[0].className = 'dark'
+            })
+        }
+    </script>
 </head>
 <body>
-    <div style="text-align: right;"><a href="https://qemcs.com">https://qemcs.com</a></div>
+    <div>
+        [<a href="void:0" class="light-btn">Light</a>] [<a href="void:0" class="dark-btn">Dark</a>]
+        <div style="float: right;">
+            <a href="https://qemcs.com">https://qemcs.com</a>
+        </div>
+    </div>
     <h2>News</h2>
     <p>I will update my profile once i have some achievement.</p>
     <h2>About</h2>
