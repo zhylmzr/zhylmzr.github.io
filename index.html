@@ -41,14 +41,27 @@
     </style>
     <script>
         let $ = function() {
-            return document.querySelectorAll(...arguments)
+            return document.querySelector(...arguments)
+        }
+        let config = localStorage.getItem('config')
+        try {
+            config = JSON.parse(config) || {}
+        } catch (e) {
+            config = {}
         }
         window.onload = () => {
-            $('.light-btn')[0].addEventListener('click', () => {
-                $('html')[0].className = 'light'
+            if (config && config.theme) {
+                if (config.theme === 'dark') {
+                    $('html').className = 'dark'
+                }
+            }
+            $('.light-btn').addEventListener('click', () => {
+                $('html').className = config.theme = 'light'
+                localStorage.setItem('config', JSON.stringify(config))
             })
-            $('.dark-btn')[0].addEventListener('click', () => {
-                $('html')[0].className = 'dark'
+            $('.dark-btn').addEventListener('click', () => {
+                $('html').className = config.theme = 'dark'
+                localStorage.setItem('config', JSON.stringify(config))
             })
         }
     </script>
